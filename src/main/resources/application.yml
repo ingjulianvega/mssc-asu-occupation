@@ -1,7 +1,14 @@
 #Application
+application-name: @artifactId@
+application-description: @project.description@
+application-version: @project.version@
+contact-name: Julián Camilo Vega Rocha
+contact-email: ingjulianvega@gmail.com
+contact-url: https://twitter.com/ingjulianvega
+
 spring:
   application:
-    name: ssc-asu-occupation
+    name: @artifactId@
   h2:
     console:
       enabled: true
