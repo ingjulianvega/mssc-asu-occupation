@@ -30,7 +30,7 @@ public class OccupationServiceImpl implements OccupationService {
         log.debug("get()...");
         return OccupationList
                 .builder()
-                .occupationDto(occupationMapper.occupationEntityListToOccupationDtoList(occupationRepository.findAll()))
+                .occupationDto(occupationMapper.occupationEntityListToOccupationDtoList(occupationRepository.findAllByOrderByName()))
                 .build();
     }
 
