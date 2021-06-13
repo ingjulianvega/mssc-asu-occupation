@@ -24,9 +24,9 @@ public class OccupationServiceImpl implements OccupationService {
     private final OccupationRepository occupationRepository;
     private final OccupationMapper occupationMapper;
 
-    @Cacheable(cacheNames = "occupationListCache")
+    @Cacheable(cacheNames = "occupationListCache", condition = "#usingCache == false")
     @Override
-    public OccupationList get() {
+    public OccupationList get(Boolean usingCache) {
         log.debug("get()...");
         return OccupationList
                 .builder()

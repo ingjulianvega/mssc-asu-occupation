@@ -20,8 +20,8 @@ public class OccupationController implements OccupationI {
     private final OccupationService occupationService;
 
     @Override
-    public ResponseEntity<OccupationList> get() {
-        return new ResponseEntity<>(occupationService.get(), HttpStatus.OK);
+    public ResponseEntity<OccupationList> get(Boolean usingCache) {
+        return new ResponseEntity<>(occupationService.get(usingCache), HttpStatus.OK);
     }
 
     @Override

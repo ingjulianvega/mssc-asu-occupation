@@ -9,7 +9,7 @@ import ingjulianvega.ximic.occupation.web.model.OccupationList;
 import java.util.UUID;
 
 public interface OccupationService {
-    OccupationList get();
+    OccupationList get(Boolean usingCache);
 
     OccupationDto getById(UUID id);
 

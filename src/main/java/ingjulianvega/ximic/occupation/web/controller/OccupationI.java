@@ -33,7 +33,7 @@ public interface OccupationI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<OccupationList> get();
+    ResponseEntity<OccupationList> get(@Parameter(in = ParameterIn.QUERY, description = "The using of cache", required = true, schema = @Schema()) Boolean usingCache);
 
 
     @Operation(summary = "Endpoint to get the information of an occupation given the id", description = "Returns an occupation", tags = {"occupation"})
