@@ -12,6 +12,7 @@ import ingjulianvega.ximic.occupation.web.model.OccupationList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -39,7 +40,14 @@ public class OccupationServiceImpl implements OccupationService {
     public OccupationDto getById(UUID id) {
         log.debug("getById()...");
         return occupationMapper.occupationEntityToOccupationDto(
-                occupationRepository.findById(id).orElseThrow(() -> new OccupationException(ErrorCodeMessages.OCCUPATION_NOT_FOUND, "")));
+                occupationRepository.findById(id).orElseThrow(() -> OccupationException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.OCCUPATION_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.OCCUPATION_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.OCCUPATION_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.OCCUPATION_NOT_FOUND_SOLUTION)
+                        .build()));
     }
 
     @Override
@@ -57,7 +65,14 @@ public class OccupationServiceImpl implements OccupationService {
     @Override
     public void updateById(UUID id, Occupation occupation) {
         log.debug("updateById...");
-        OccupationEntity occupationEntity = occupationRepository.findById(id).orElseThrow(() -> new OccupationException(ErrorCodeMessages.OCCUPATION_NOT_FOUND, ""));
+        OccupationEntity occupationEntity = occupationRepository.findById(id).orElseThrow(() -> OccupationException
+                .builder()
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .apiCode(ErrorCodeMessages.OCCUPATION_NOT_FOUND_API_CODE)
+                .error(ErrorCodeMessages.OCCUPATION_NOT_FOUND_ERROR)
+                .message(ErrorCodeMessages.OCCUPATION_NOT_FOUND_MESSAGE)
+                .solution(ErrorCodeMessages.OCCUPATION_NOT_FOUND_SOLUTION)
+                .build());
         occupationEntity.setName(occupation.getName());
 
         occupationRepository.save(occupationEntity);
