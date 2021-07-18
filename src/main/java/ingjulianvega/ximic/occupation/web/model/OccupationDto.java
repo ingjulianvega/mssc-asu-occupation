@@ -10,7 +10,6 @@ import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.UUID;
 
-import static ingjulianvega.ximic.occupation.configuration.ErrorCodeMessages.VALIDATION_NAME_NULL;
 
 
 @Data
@@ -22,7 +21,7 @@ public class OccupationDto implements Serializable {
 
     @Null
     private UUID id;
-    @NotBlank(message = VALIDATION_NAME_NULL)
+    @NotBlank
     private String name;
 
 }
